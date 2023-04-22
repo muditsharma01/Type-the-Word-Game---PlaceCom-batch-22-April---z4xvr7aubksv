@@ -7,51 +7,49 @@ function App() {
   const [word, setWord] = useState('');
   const [flashWord, setFlashWord] = useState(true);
   const [userInput, setUserInput] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState('');
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // Set the first word from the WORD_LIST array as the initial word
-    setWord(WORD_LIST[index]);
-
-    // After 500ms, hide the word and show the input form
-    const timerId = setTimeout(() => {
+    const timeout = setTimeout(() => {
       setFlashWord(false);
     }, 500);
 
-    // Clear the timer on component unmount
-    return () => clearTimeout(timerId);
+    return () => clearTimeout(timeout);
+  }, [word]);
+
+  useEffect(() => {
+    setWord(WORD_LIST[index]);
+    setFlashWord(true);
+    setUserInput('');
+    setResult('');
   }, [index]);
 
-  function handleInputChange(event) {
+  const handleInputChange = (event) => {
     setUserInput(event.target.value);
-  }
+  };
 
-  function handleFormSubmit(event) {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    // Check if the user input matches the current word from WORD_LIST
-    if (userInput.toLowerCase() === WORD_LIST[index].toLowerCase()) {
-      setResult('You Won!');
+    if (userInput.toLowerCase() === word.toLowerCase()) {
+      setResult('You won!');
     } else {
-      setResult('You Lost!');
+      setResult('You lost!');
     }
-  }
+  };
 
-  function handleRestartClick() {
-    // Reset the state variables to their initial values
-    setIndex(0);
-    setUserInput('');
-    setResult(null);
-    setFlashWord(true);
-  }
+  const handleRestartClick = () => {
+    if (index === WORD_LIST.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  };
 
   return (
     <div className="mini-game-container">
       <h2 className="mini-game-title">Mini Game</h2>
-      {flashWord && (
-        <p className="mini-game-word">{word}</p>
-      )}
+      {flashWord && <p className="mini-game-word">{word}</p>}
       {!flashWord && (
         <form className="mini-game-form" onSubmit={handleFormSubmit}>
           <input className="mini-game-input" type="text" value={userInput} onChange={handleInputChange} />
