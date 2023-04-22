@@ -1,0 +1,58 @@
+.mini-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.mini-game-word {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.mini-game-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mini-game-input {
+  padding: 1rem;
+  font-size: 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  text-align: center;
+}
+
+.mini-game-button {
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.mini-game-result {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.mini-game-restart-button {
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  background-color: #2646ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
